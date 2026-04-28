@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gossip Rate Limit Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+
+    <section class="gate card" id="gate">
+      <p class="eyebrow">Restricted access</p>
+      <h1>Admin dashboard</h1>
+      <p class="lede">
+        Log in with a demo username and password to unlock the node dashboard and rate-limit view.
+      </p>
+
+      <div class="login-grid">
+        <label class="field">
+          <span>Username</span>
+          <input id="gate-username" type="text" placeholder="admin" autocomplete="username" />
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input id="gate-password" type="password" placeholder="admin123" autocomplete="current-password" />
+        </label>
+      </div>
+
+      <div class="gate-actions">
+        <button id="gate-enter">Enter dashboard</button>
+        <span id="gate-status" class="gate-status">Waiting for admin login</span>
+      </div>
+    </section>
+
+    <main class="shell">
+      <section class="hero card">
+        <div>
+          <p class="eyebrow">Distributed FastAPI rate limiter</p>
+          <h1>Node gossip and per-request rate limits</h1>
+          <p class="lede">
+            Watch cluster metadata, inspect the latest gossip sync, and probe the
+            live rate-limit headers returned by each request.
+          </p>
+        </div>
+        <div class="hero-meta">
+          <span class="pill" id="gossip-pill">Loading...</span>
+          <span class="pill secondary" id="node-pill">Node: ...</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card stat">
+          <span class="label">Configured nodes</span>
+          <strong id="node-count">0</strong>
+          <small id="peer-count">0 peers configured</small>
+        </article>
+        <article class="card stat">
+          <span class="label">Snapshot size</span>
+          <strong id="snapshot-size">0</strong>
+          <small>users tracked in the local CRDT</small>
+        </article>
+        <article class="card stat">
+          <span class="label">Last sync</span>
+          <strong id="last-sync">Never</strong>
+          <small id="last-source">No gossip envelope received yet</small>
+        </article>
+      </section>
+
+      <section class="grid two-up">
+        <article class="card panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Request probe</p>
+              <h2>Rate limit per request</h2>
+            </div>
+            <button id="probe-button">Send probe</button>
+          </div>
+
+          <div class="request-grid">
+            <div>
+              <span class="label">Status</span>
+              <strong id="probe-status">Idle</strong>
+            </div>
+            <div>
+              <span class="label">Limit</span>
+              <strong id="probe-limit">-</strong>
+            </div>
+            <div>
+              <span class="label">Current</span>
+              <strong id="probe-current">-</strong>
+            </div>
+          </div>
+
+          <pre id="probe-detail" class="code-block">Send a request to see the live rate-limit headers.</pre>
+        </article>
+
+        <article class="card panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Gossip view</p>
+              <h2>Peer status</h2>
+            </div>
+            <button id="refresh-button" class="ghost">Refresh</button>
+          </div>
+
+          <div class="peer-list" id="peer-list"></div>
+
+          <div class="snapshot-box">
+            <span class="label">Local snapshot</span>
+            <pre id="snapshot-json">Loading...</pre>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
