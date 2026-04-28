@@ -95,3 +95,20 @@ def require_permissions(*required_permissions: Permission) -> Callable[[User], U
         return user
 
     return dependency
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

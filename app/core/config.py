@@ -37,7 +37,7 @@ def _as_bool(value: str) -> bool:
 
 @dataclass(slots=True)
 class Settings:
-    app_name: str = "Distributed Rate Limiter"
+    app_name: str = "GossipGuard Rate Limiter"
     node_id: str = field(default_factory=gethostname)
     peer_urls: tuple[str, ...] = field(default_factory=tuple)
     rate_limit_window_seconds: int = 60

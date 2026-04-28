@@ -3,18 +3,28 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "rate-limiting-gossip"
+name = "gossipguard-rate-limiter"
 version = "0.1.0"
-description = "Distributed FastAPI rate limiter with gossip sync and permission-based auth"
+description = "Distributed FastAPI rate limiter with gossip sync and role-based auth"
 requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.115",
-  "uvicorn[standard]>=0.30",
+  "uvicorn>=0.30",
   "httpx>=0.27",
+  "PyJWT>=2.8",
+  "python-multipart>=0.0.9",
+  "bcrypt>=4.0",
 ]
 
 [project.optional-dependencies]
 test = ["pytest>=8.0"]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["tests*", "frontend*"]
 
 [tool.pytest.ini_options]
 addopts = "-q"

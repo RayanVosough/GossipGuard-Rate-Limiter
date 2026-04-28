@@ -1,4 +1,4 @@
-# Distributed Rate Limiter
+# GossipGuard Rate Limiter
 
 A FastAPI-based distributed rate limiting project with gossip sync, JWT authentication, and role-based permissions.
 
