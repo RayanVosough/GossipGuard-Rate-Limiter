@@ -168,13 +168,3 @@ pytest tests/test_rate_limit_repository.py
 3. Use `Authorization: Bearer <token>` for protected endpoints
 4. Visit `/auth/me` to confirm the active user
 
-## Security Notes
-
-- Never commit your `.env` file.
-- Use strong random values for both secrets.
-- Demo users are for local development only.
-- Rotate secrets if they are exposed.
-
-## License
-
-Add your preferred open-source license before publishing this repository publicly.
